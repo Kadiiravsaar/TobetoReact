@@ -18,7 +18,7 @@ export default function App() {
     </div>
       
     <div>
-     <p>Kadir2</p>
+     <p>Kadir eklendi</p>
     </div>
   
   
