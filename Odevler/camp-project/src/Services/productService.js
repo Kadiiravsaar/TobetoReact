@@ -7,4 +7,7 @@ export default class ProductService {
     //return axios.get("https://jsonplaceholder.typicode.com/posts");
     return axios.get("https://dummyjson.com/products");
   }
+  getByProductId(id) {
+    return axios.get("https://dummyjson.com/products/" + id);
+  }
 }
