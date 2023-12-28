@@ -1,5 +1,0 @@
-git status
-git add . ya da dosya yolu
-git commit -m "commit"
-
-git push -u origin main
