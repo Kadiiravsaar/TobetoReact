@@ -1,101 +1,21 @@
-import "./App.css";
-import { useEffect, useState } from "react";
-import Navbar from "./components/Navbar/Navbar";
-import ProductCard from "./components/ProductCard/ProductCard";
-
-
+import "bootstrap/dist/css/bootstrap.css"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Homepage from "./pages/Homepage/Homepage";
+import Products from "./pages/Products/Products";
 export default function App() {
-  // react hooks
-  // total, setTotal => initial value
-  // let total = 0;
 
-  // neden const totali değişiyorum fakat totalin tanımını değiştirmeyeceğiz
-  // react içerisinde değişken kullanıldığında normal tanımlanan değişekenler takip edilmez ui yansımaz
-  // fakat usestate ile durumu takip edilir
-
-  const [total, setTotal] = useState(0);
-
-  // useEffect
-  // component ilk render edildiğinde. 2 yerde çalışır hem render hemde dep list tetiklendiğinde
-  // [] => dep. listesindeki verilerin değiştiği anda tekrar tetiklenen yapıdır.
-  useEffect(() => {
-    // console.log("UseEffect çalıştı");
-    console.log(total);
-
-    if (total >= 10) {
-      alert("uyarııı");
-      setTotal(10);
-    }
-  }, [total]);
-  // total her değiştiğinde fonksiyonu yakalar (console.log("UseEffect çalıştı"); )
-
-  useEffect(() => {
-    console.log("use effect 2"); // bunlarda arka plandan gelen veriler sayfa ilk açıldığında çalışsın
-  }, []);
-
-  const increase = () => {
-    setTotal(total + 1);
-    // set fonks asyn gibi çalışır fakat gibi olduğu için problem olur geriden gelir
-  };
-
-  const decrease = () => {
-    setTotal(total - 1);
-  };
-
-  const [activity, setActivity] = useState("");
-  const [activityList, setActivityList] = useState([]);
-
-  const clearActivity = () => {
-    setActivity("");
-  };
-
-  const addActivity = () => {
-    // setActivityList((prevState) => {
-    //   prevState.push(activity);
-    //   console.log(prevState);
-    //   return prevState;
-    // });
-    setActivityList([...activityList, activity]); // arrayi parçalamaya olanak sağlayan operatör (...act)
-    clearActivity();
-  };
-
-  const removeActivity = (activity) => {
-    setActivityList(activityList.filter(i => i !== activity));
-  }
-
-  // Two Way Data Binding => kullanıcıdan girdi aldığı veriler ile arkada tutulan verinin senkron halde ilerlemesinden emin olduğum durum
   return (
-    <>
-      <Navbar name="Kadir">
 
-      </Navbar>
-      <div>
-        <p>{total}</p>
-      </div>
-      <div>
-        <button onClick={increase}>Artır</button>
-        {/* <button onClick={()=>{increase();}}>Artır</button> */}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage></Homepage>}> </Route>
+        <Route path="/products" element={<Products></Products>}> </Route>
+        <Route path="*" element={<div>Not found</div>}> </Route>
+        {/* * kullanıcı pathi boş olduğunda beni hata sayfasına yönlendir  */}
 
-        <button onClick={decrease}>Azalt</button>
-      </div>
-      <hr></hr>
+        {/* // kullanıcı pathi path="/products olduğunda beni Products sayfasına yönlendir  */}
+      </Routes>
+    </BrowserRouter>
 
-      <div>
-        <input value={activity} onChange={(event) => { setActivity(event.target.value) }} type='text' placeholder='Aktivite Giriniz..' />
-        <br />
-        <button onClick={() => { addActivity(); }}>Ekle</button>
-        <ul>
-          {/* JSX içerisinde iterasyonlar her zaman MAP ile yapılmalıdır. */}
-          {activityList.map((element) => (<li key={element}>{element} <button onClick={() => { removeActivity(element) }}>X</button> </li>))}
-        </ul>
-      </div>
-      <hr></hr>
-      <ProductCard name="Laptop" price={500} />
-      <ProductCard name="Mouse" price={100} />
-      <ProductCard name="Klavye" price={200} />
-
-
-
-    </>
   );
 }
