@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 
 
 export default function Homepage() {
-
     const myAsynFunction = () => {
         return new Promise((resolve, reject) => {
-
             setTimeout(() => {
                 resolve("veri örneği") // resolve başarılı 
                 // reject("")  // reject başarısız
@@ -15,8 +13,9 @@ export default function Homepage() {
         });
     }
 
+    const thenCatchFinnaly = () => {
+        console.log("Response Öncesi");
 
-    useEffect(() => {
         myAsynFunction()
             .then(response => {
                 console.log("bir cevap geldi", response);
@@ -27,11 +26,26 @@ export default function Homepage() {
             .finally(() => {
                 console.log("Async işlem sonlandı");
             });
+        console.log("Response sonrası");
 
-        console.log("Merhaba");
-    }, []);
+    }
+    const asyncAwait = async () => {
+        console.log("Response Öncesi");
+        try {
+            let response = await myAsynFunction();
+            console.log(response);
+            // eğer await kullanıyorsak ve reject olursa manuel try catch yazmak gerekir
+        } catch (error) {
+            console.log(error);
+        }
+        console.log("Response sonrası");
+    }
 
+    useEffect(() => {
 
+        //thenCatchFinnaly();
+        asyncAwait();
+    }, [])
 
     return (
         <div>

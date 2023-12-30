@@ -7,12 +7,12 @@ export default function App() {
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar />
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Homepage></Homepage>}> </Route>
-          <Route path="/products" element={<Products></Products>}> </Route>
+          <Route path="/" element={<Homepage />}> </Route>
+          <Route path="/products" element={<Products />}> </Route>
           <Route path="*" element={<div>Not found</div>}> </Route>
           {/* * kullanıcı pathi boş olduğunda beni hata sayfasına yönlendir  */}
 
