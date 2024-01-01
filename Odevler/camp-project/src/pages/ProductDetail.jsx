@@ -18,10 +18,12 @@ export default function ProductDetail() {
         <Card fluid>
           <Card.Content>
             {product.thumbnail && (
-              <Image floated="mid" src={product.thumbnail} />
+              <Image floated="right"
+                src={product.thumbnail} />
             )}
             <Card.Header>{product.title}</Card.Header>
             <Card.Meta>{product.category}</Card.Meta>
+            <Card.Meta>{product.price}</Card.Meta>
             <Card.Description>{product.description}</Card.Description>
           </Card.Content>
           <Card.Content extra>

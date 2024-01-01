@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Icon, Label, Menu, Table } from "semantic-ui-react";
 import ProductService from "../Services/productService";
+import { Link } from "react-router-dom";
+
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
@@ -9,8 +11,28 @@ export default function ProductList() {
     let productService = new ProductService();
     productService
       .getProducts()
-      .then((result) => setProducts(result.data.products));
+      .then((result) => setProducts(result.data.products))
   }, []);
+
+
+  // const [error, setError] = useState(null);
+
+  // useEffect(() => {
+  //   let productService = new ProductService();
+  //   productService
+  //     .getProducts()
+  //     .then((result) => setProducts(result.data.products))
+  //     .catch((err) => {
+  //       console.error("Ürünleri getirirken bir hata oluştu:", err);
+  //       setError(err); // Hata durumunu state'e ekleyerek kontrol edebilirsiniz.
+  //     });
+  // }, []);
+
+  // Hata durumunu kullanarak ek işlemler yapabilirsiniz.
+  // if (error) {
+  //   Örnek: Kullanıcıya bir hata mesajı gösterme.
+  // }
+
 
   return (
     <div>
@@ -29,7 +51,7 @@ export default function ProductList() {
         <Table.Body>
           {products.map((product) => (
             <Table.Row key={product.id}>
-              <Table.Cell>{product.title}</Table.Cell>
+              <Table.Cell> <Link to={`products/${product.id}`}>{product.title}</Link> </Table.Cell>
               <Table.Cell>{product.description}</Table.Cell>
               <Table.Cell>{product.price}</Table.Cell>
               <Table.Cell>{product.discountPercentage}</Table.Cell>
@@ -41,7 +63,7 @@ export default function ProductList() {
 
         <Table.Footer>
           <Table.Row>
-            <Table.HeaderCell colSpan="3">
+            <Table.HeaderCell colSpan="7">
               <Menu floated="right" pagination>
                 <Menu.Item as="a" icon>
                   <Icon name="chevron left" />

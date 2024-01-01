@@ -26,11 +26,8 @@ export default function Navi() {
 
           <Menu.Menu position="right">
             <CartSummary />
-            {isAuthenticated ? (
-              <SignedIn signOut={handleSignOut} bisey="1" />
-            ) : (
-              <SignedOut signIn={handleSignIn} />
-            )}
+            {isAuthenticated ? (<SignedIn signOut={handleSignOut} bisey="1" />)
+              : (<SignedOut signIn={handleSignIn} />)}
           </Menu.Menu>
         </Container>
       </Menu>
