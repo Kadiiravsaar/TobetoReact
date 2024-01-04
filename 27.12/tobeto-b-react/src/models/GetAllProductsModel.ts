@@ -1,8 +1,9 @@
 import { ProductModel } from "./ProductModel";
 
 export interface GetAllProductsModel {
-    id: number;
-    name: string;
+    total: number;
+    skip: number;
+    limit: number;
     products: ProductModel[];
 }
 
