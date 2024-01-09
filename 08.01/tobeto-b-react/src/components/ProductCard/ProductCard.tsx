@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import { ProductModel } from "../../models/ProductModel";
 import {useDispatch} from "react-redux";
-import { addToCart } from "../../store/actions/cartAction";
+import { addToCart } from "../../reduxToolkit/cartSlice";
 
 type Props = {
 	product: ProductModel;
